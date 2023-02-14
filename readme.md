@@ -1,5 +1,9 @@
 # To-Do Application using Flask
 
+### Create an environment
+- py -3 -m venv venv
+- venv\Scripts\activate
+- 
 ### Install flask
 - pip install Flask
 - pip install flask-sqlalchemy
