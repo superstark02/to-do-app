@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+</head>
+
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1>To Do App</h1>
+
+        <form action="/add" method="post">
+            <div>
+                <label>Todo Title</label>
+                <input type="text" name="title" placeholder="Enter Todo..."><br>
+            </div>
+            <button type="submit">Add</button>
+        </form>
+
+        <hr>
+
+        {% for todo in todo_list %}
+        <div>
+            <form id="{{ todo.id }}" action="/update/{{ todo.id }}">
+            {% if todo.complete == False %}
+                <input type="checkbox" id="{{todo.id }}" name="{{todo.id }}" value="{{ todo.title }}" onclick="document.getElementById('{{ todo.id }}').submit();">
+                <label for="{{todo.id }}">{{ todo.id }} | {{ todo.title }}</label><br>
+            {% else %}
+                <input type="checkbox" id="{{ todo.id }}" name="{{ todo.id }}" value="{{ todo.title }}" checked onclick="document.getElementById('{{ todo.id }}').submit();">
+                <label for="{{todo.id }}"><s>{{ todo.id }} | {{ todo.title }}</s></label><br>
+            {% endif %}
+            <a href="/delete/{{ todo.id }}">Delete</a>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
